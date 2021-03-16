@@ -1,1 +1,27 @@
-<p>home works!</p>
+<div class="home">
+  <!-- 父传子值 -->
+  <!-- (changeSlider)="handleSlider($event)" 这里必须写$event -->
+  <app-wy-carsousel
+    #dotRenderTpl
+    [activeIndex]="nextActiveIndex"
+    (changeSlider)="handleSlider($event)"
+  >
+    <nz-carousel
+      #carousel
+      nzAutoPlay
+      nzEffect="fade"
+      [nzDotRender]="dotRenderTpl.dotRef"
+      (nzBeforeChange)="handleBeforeChange($event)"
+    >
+      <div
+        class="carousel-item"
+        nz-carousel-content
+        *ngFor="let item of banners"
+      >
+        <a [href]="item.url" target="_blank" class="banner-item">
+          <img [src]="item.imageUrl" />
+        </a>
+      </div>
+    </nz-carousel>
+  </app-wy-carsousel>
+</div>
