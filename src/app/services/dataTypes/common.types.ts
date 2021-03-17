@@ -10,16 +10,26 @@ export interface IHotTag {
   position: number;
 }
 
-export interface IPersonalized {
-  id: number;
-  name: string;
-  picUrl: number;
-  playCount: number;
-}
-
 export interface ISinger {
   id: number;
   name: string;
   picUrl: number;
   albumSize: number;
+}
+
+export interface ISong {
+  id: number;
+  name: string;
+  url: string;
+  ar: ISinger[];
+  al: { id: number; name: string; picUrl: string };
+  dt: number;
+}
+
+export interface IPersonalized {
+  id: number;
+  name: string;
+  picUrl: number;
+  playCount: number;
+  tracks: ISong[];
 }

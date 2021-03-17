@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { NzCarouselComponent } from "ng-zorro-antd";
 import { map } from "rxjs/internal/operators";
+import { SongListService } from "src/app/services/song-list.service";
 import {
   IBanner,
   IHotTag,
@@ -31,7 +32,10 @@ export class HomeComponent implements OnInit {
   @ViewChild("carousel", { static: true })
   private carousel: NzCarouselComponent;
 
-  constructor(private route: ActivatedRoute) {
+  constructor(
+    private route: ActivatedRoute,
+    private songListService: SongListService
+  ) {
     this.route.data
       .pipe(map((res) => res.homeData))
       .subscribe(([banners, tags, personalizeds, singerInfos]) => {
@@ -57,7 +61,14 @@ export class HomeComponent implements OnInit {
   }
 
   // 处理左右箭头的事件
-  handleSlider(type) {
+  handleSlider(type: string) {
     this.carousel[type]();
+  }
+
+  // 处理点击歌单封面播放按钮
+  handleOnPlay(id: number) {
+    this.songListService.getPlaylist(id).subscribe((res) => {
+      console.log(res);
+    });
   }
 }

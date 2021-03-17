@@ -55,6 +55,7 @@
                 class="sheet-item"
                 *ngFor="let item of personalizeds"
                 [item]="item"
+                (onPlay)="handleOnPlay($event)"
               ></app-song-cover>
             </div>
           </div>
