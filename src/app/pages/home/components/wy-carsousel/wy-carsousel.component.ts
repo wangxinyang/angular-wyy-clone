@@ -1,4 +1,5 @@
 import {
+  ChangeDetectionStrategy,
   Component,
   EventEmitter,
   Input,
@@ -12,6 +13,7 @@ import {
   selector: "app-wy-carsousel",
   templateUrl: "./wy-carsousel.component.html",
   styleUrls: ["./wy-carsousel.component.less"],
+  changeDetection: ChangeDetectionStrategy.OnPush, //简单组件修改变更检测的策略，onpush只在input变化之后才重新渲染提升性能
 })
 export class WyCarsouselComponent implements OnInit {
   // 父传子的入参
