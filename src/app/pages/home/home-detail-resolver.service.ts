@@ -4,14 +4,14 @@ import { Injectable } from "@angular/core";
 import {
   IBanner,
   IHotTag,
-  IPersonalized,
+  ISongSheet,
   ISinger,
 } from "src/app/services/dataTypes/common.types";
 import { HomeService } from "src/app/services/home.service";
 import { SingerService } from "src/app/services/singer.service";
 import { first } from "rxjs/internal/operators";
 
-type HomeDataType = [IBanner[], IHotTag[], IPersonalized[], ISinger[]];
+type HomeDataType = [IBanner[], IHotTag[], ISongSheet[], ISinger[]];
 
 @Injectable()
 export class HomeDetailResolverService implements Resolve<HomeDataType> {

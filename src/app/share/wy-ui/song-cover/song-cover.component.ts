@@ -6,7 +6,7 @@ import {
   OnInit,
   Output,
 } from "@angular/core";
-import { IPersonalized } from "../../../services/dataTypes/common.types";
+import { ISongSheet } from "../../../services/dataTypes/common.types";
 
 @Component({
   selector: "app-song-cover",
@@ -15,7 +15,7 @@ import { IPersonalized } from "../../../services/dataTypes/common.types";
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SongCoverComponent implements OnInit {
-  @Input("item") item: IPersonalized;
+  @Input() item: ISongSheet;
 
   @Output() onPlay = new EventEmitter<number>();
 

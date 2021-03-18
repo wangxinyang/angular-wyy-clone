@@ -25,11 +25,9 @@ export class SongService {
   getSong(song: IPlaySong | IPlaySong[]): Observable<IPlaySong[]> {
     const songArr = Array.isArray(song) ? song.slice() : [song];
     const ids = songArr.map((song) => song.id).join(",");
-    return new Observable((observer) => {
-      this.getSongUrl(ids).subscribe((urls) => {
-        observer.next(this.generatePlaySong(songArr, urls));
-      });
-    });
+    return this.getSongUrl(ids).pipe(
+      map((urls) => this.generatePlaySong(songArr, urls))
+    );
   }
 
   private generatePlaySong(songs: IPlaySong[], urls: ISongUrl[]): IPlaySong[] {
