@@ -2,11 +2,11 @@ import { Component, OnInit, ViewChild } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { NzCarouselComponent } from "ng-zorro-antd";
 import { map } from "rxjs/internal/operators";
-import { SongListService } from "src/app/services/song-list.service";
+import { SheetService } from "src/app/services/sheet.service";
 import {
   IBanner,
   IHotTag,
-  IPersonalized,
+  ISongSheet,
   ISinger,
 } from "../../services/dataTypes/common.types";
 
@@ -24,7 +24,7 @@ export class HomeComponent implements OnInit {
   // 存储热门标签
   tags: IHotTag[];
   // 存储推荐歌单
-  personalizeds: IPersonalized[];
+  personalizeds: ISongSheet[];
   // 歌手数据
   singerInfos: ISinger[];
 
@@ -34,7 +34,7 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private songListService: SongListService
+    private sheetService: SheetService
   ) {
     this.route.data
       .pipe(map((res) => res.homeData))
@@ -67,7 +67,7 @@ export class HomeComponent implements OnInit {
 
   // 处理点击歌单封面播放按钮
   handleOnPlay(id: number) {
-    this.songListService.getPlaylist(id).subscribe((res) => {
+    this.sheetService.getPlaySong(id).subscribe((res) => {
       console.log(res);
     });
   }

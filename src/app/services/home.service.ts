@@ -1,7 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Inject, Injectable } from "@angular/core";
 import { Observable } from "rxjs";
-import { IBanner, IHotTag, IPersonalized } from "./dataTypes/common.types";
+import { IBanner, IHotTag, ISongSheet } from "./dataTypes/common.types";
 import { ServicesModule, API_URL_PREFIX } from "./services.module";
 import { map } from "rxjs/internal/operators";
 
@@ -33,9 +33,9 @@ export class HomeService {
   }
 
   // 获取热门歌单
-  getPersonalized(): Observable<IPersonalized[]> {
+  getPersonalized(): Observable<ISongSheet[]> {
     return this.http
       .get(this.uri + "personalized")
-      .pipe(map((res: { result: IPersonalized[] }) => res.result.slice(0, 16)));
+      .pipe(map((res: { result: ISongSheet[] }) => res.result.slice(0, 16)));
   }
 }

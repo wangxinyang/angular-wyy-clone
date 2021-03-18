@@ -17,7 +17,7 @@ export interface ISinger {
   albumSize: number;
 }
 
-export interface ISong {
+export interface IPlaySong {
   id: number;
   name: string;
   url: string;
@@ -26,10 +26,15 @@ export interface ISong {
   dt: number;
 }
 
-export interface IPersonalized {
+export interface ISongUrl {
+  id: number;
+  url: string;
+}
+
+export interface ISongSheet {
   id: number;
   name: string;
   picUrl: number;
   playCount: number;
-  tracks: ISong[];
+  tracks: IPlaySong[];
 }
