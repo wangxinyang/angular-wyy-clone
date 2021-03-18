@@ -1,4 +1,5 @@
 import {
+  ChangeDetectionStrategy,
   Component,
   Input,
   OnChanges,
@@ -9,7 +10,8 @@ import { IWySliderType } from "./wy-slider-types";
 
 @Component({
   selector: "app-wy-slider-track",
-  template: `<div class="wy-slider-track"></div>`,
+  template: `<div class="wy-slider-track" [ngStyle]="style"></div>`,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class WySliderTrackComponent implements OnInit, OnChanges {
   @Input() verticalType = false;
@@ -22,6 +24,7 @@ export class WySliderTrackComponent implements OnInit, OnChanges {
   ngOnInit() {}
 
   ngOnChanges(changes: SimpleChanges): void {
+    console.log("track offset", this.offset);
     if (changes["offset"]) {
       if (this.verticalType) {
         this.style.height = this.offset + "%";
